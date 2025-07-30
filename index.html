@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마음의 위로 - 예수님의 사랑</title>
+    <style>
+        @font-face {
+            font-family: 'GowunBatang-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'GowunBatang-Regular', serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 배경 애니메이션 */
+        .ocean-waves {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23ffffff" fill-opacity="0.1"/></svg>') repeat-x;
+            animation: wave 20s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        .ocean-waves::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ffffff" fill-opacity="0.05"/></svg>') repeat-x;
+            animation: wave 15s ease-in-out infinite reverse;
+        }
+        
+        /* 유성우 애니메이션 */
+        .shooting-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: shooting 3s linear infinite;
+        }
+        
+        .star:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 30%; left: 80%; animation-delay: 1s; }
+        .star:nth-child(3) { top: 50%; left: 40%; animation-delay: 2s; }
+        .star:nth-child(4) { top: 70%; left: 90%; animation-delay: 3s; }
+        .star:nth-child(5) { top: 20%; left: 60%; animation-delay: 4s; }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-25%); }
+        }
+        
+        @keyframes shooting {
+            0% { opacity: 0; transform: translate(0, 0) scale(0); }
+            10% { opacity: 1; transform: translate(-10px, 10px) scale(1); }
+            90% { opacity: 1; transform: translate(-100px, 100px) scale(1); }
+            100% { opacity: 0; transform: translate(-120px, 120px) scale(0); }
+        }
+        
+        /* 메인 컨텐츠 */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #87CEEB, #E0F6FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(135, 206, 235, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(135, 206, 235, 0.8)); }
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(135, 206, 235, 0.2);
+        }
+        
+        .content-section h2 {
+            color: #87CEEB;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .bible-verse {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(224, 246, 255, 0.1));
+            border-left: 4px solid #87CEEB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .bible-verse cite {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #87CEEB;
+        }
+        
+        .faq-section {
+            margin-top: 3rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: rgba(135, 206, 235, 0.2);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .faq-question:hover {
+            background: rgba(135, 206, 235, 0.3);
+        }
+        
+        .faq-answer {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .love-message {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #E0F6FF;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.1), transparent);
+            border-radius: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .content-section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="shooting-stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    
+    <div class="ocean-waves"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>마음의 위로</h1>
+            <p id="header-desc">지치고 슬픈 모든 이들에게 전하는 예수님의 사랑</p>
+            <button id="tone-toggle" onclick="toggleTone()" style="
+                background: linear-gradient(45deg, #87CEEB, #E0F6FF);
+                color: #0f2027;
+                border: none;
+                padding: 0.8rem 2rem;
+                border-radius: 25px;
+                font-family: inherit;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(135, 206, 235, 0.3);
+            ">친근하게</button>
+        </header>
+        
+        <div class="bible-verse">
+            "수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라"
+            <cite>— 마태복음 11:28</cite>
+        </div>
+        
+        <section class="content-section" id="love-section">
+            <h2>당신은 사랑받는 존재입니다</h2>
+            <p id="love-p1">오늘 하루도 힘들었나요? 마음이 무겁고 앞길이 보이지 않나요? 그런 당신에게 전하고 싶은 말이 있습니다.</p>
+            <p id="love-p2">예수님은 당신을 깊이 사랑하십니다. 당신이 누구든, 어떤 상황에 있든, 그 사랑은 변하지 않습니다. 마치 바다처럼 깊고 넓은 그 사랑 안에서 당신은 평안을 찾을 수 있습니다.</p>
+        </section>
+        
+        <section class="content-section" id="hope-section">
+            <h2>희망을 잃지 마세요</h2>
+            <p id="hope-p1">어둠이 아무리 깊어도 새벽은 반드시 옵니다. 지금의 고통이 영원하지 않음을 기억하세요.</p>
+            <p id="hope-p2">예수님은 말씀하셨습니다: "세상에서는 너희가 환난을 당하나 담대하라 내가 세상을 이기었노라" (요한복음 16:33)</p>
+        </section>
+        
+        <div class="love-message" id="love-message">
+            <p><strong>믿음이 없어도 괜찮습니다.</strong><br>
+            <span id="love-msg-content">예수님의 사랑은 조건이 없습니다. 당신이 믿든 믿지 않든, 그분의 사랑은 언제나 당신과 함께합니다.</span></p>
+        </div>
+        
+        <section class="content-section" id="peace-section">
+            <h2 id="peace-title">평안을 찾는 방법</h2>
+            <p id="peace-p1">• <strong>기도해보세요</strong> - 말로 하든 마음으로 하든, 솔직한 마음을 표현해보세요</p>
+            <p id="peace-p2">• <strong>성경을 읽어보세요</strong> - 시편은 특히 위로가 됩니다</p>
+            <p id="peace-p3">• <strong>자연을 바라보세요</strong> - 하나님의 창조물 안에서 평안을 느껴보세요</p>
+            <p id="peace-p4">• <strong>누군가와 이야기하세요</strong> - 혼자 견디지 마시고 도움을 청하세요</p>
+        </section>
+        
+        <section class="faq-section">
+            <h2 style="color: #87CEEB; text-align: center; margin-bottom: 2rem;">자주 묻는 질문들</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(0)">
+                    왜 하나님은 나쁜 사람들을 지옥에 보내시나요?
+                </button>
+                <div class="faq-answer" id="faq-0">
+                    <p>하나님은 사랑의 하나님이시며, 누구든지 멸망하기를 원하지 않으십니다. 지옥은 하나님이 사람을 보내시는 곳이 아니라, 사람이 하나님을 거부할 때 스스로 선택하는 것입니다.</p>
+                    <p>하나님은 모든 사람에게 구원의 길을 열어주셨고, 예수님을 통해 누구든지 구원받을 수 있도록 하셨습니다. 하나님의 심판도 사랑에서 나오는 것이며, 공의로우신 분이기 때문입니다.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(1)">
+                    왜 기독교만이 유일한 길이라고 강요하나요?
+                </button>
+                <div class="faq-answer" id="faq-1">
+                    <p>기독교는 강요가 아닌 초대입니다. 예수님께서 "내가 곧 길이요 진리요 생명이니"라고 말씀하신 것은 배타적 주장이 아니라, 하나님께로 가는 확실한 길을 제시해주신 것입니다.</p>
+                    <p>진정한 기독교는 사랑으로 전해지는 것이며, 각자의 선택을 존중합니다. 다만 우리가 경험한 하나님의 사랑을 나누고 싶을 뿐입니다.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(2)">
+                    과학과 신앙이 충돌하지 않나요?
+                </button>
+                <div class="faq-answer" id="faq-2">
+                    <p>과학과 신앙은 서로 다른 영역의 질문에 답합니다. 과학은 '어떻게'를 탐구하고, 신앙은 '왜'와 '누가'에 대한 답을 제시합니다.</p>
+                    <p>많은 훌륭한 과학자들이 동시에 독실한 신앙인이었습니다. 하나님이 창조하신 세계를 과학으로 탐구하는 것은 오히려 하나님을 더욱 깊이 알아가는 방법이 될 수 있습니다.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(3)">
+                    고난당하는 사람들을 왜 하나님이 도와주지 않나요?
+                </button>
+                <div class="faq-answer" id="faq-3">
+                    <p>하나님은 고난당하는 자들과 함께 계십니다. 예수님도 이 땅에서 고난을 받으셨고, 우리의 아픔을 아십니다.</p>
+                    <p>때로는 우리가 이해할 수 없는 방식으로 일하시지만, 하나님은 모든 것을 합력하여 선을 이루시는 분입니다. 고난 속에서도 하나님의 사랑과 계획이 있음을 믿어보세요.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(4)">
+                    교회에 다니지 않아도 구원받을 수 있나요?
+                </button>
+                <div class="faq-answer" id="faq-4">
+                    <p>구원은 교회 출석이 아닌 예수님을 구주로 믿는 믿음으로 받습니다. 하지만 교회는 신앙생활에 큰 도움이 되는 공동체입니다.</p>
+                    <p>혼자서는 신앙을 지키기 어려울 때가 있습니다. 교회는 서로를 격려하고 함께 성장할 수 있는 소중한 곳입니다. 부담 없이 한번 방문해보시는 것도 좋겠습니다.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="bible-verse">
+            "내가 너희에게 평강을 끼치노니 곧 나의 평강을 너희에게 주노라<br>
+            내가 너희에게 주는 것은 세상이 주는 것과 같지 아니하니라<br>
+            너희는 마음에 근심하지도 말고 두려워하지도 말라"
+            <cite>— 요한복음 14:27</cite>
+        </div>
+        
+        <footer class="footer">
+            <p style="color: #87CEEB; font-size: 1.1rem; margin-bottom: 1rem;">
+                linktr.ee/christanswer 에서 모든 정보를 얻을 수 있어요!
+            </p>
+            <p>이 사이트는 익명의 청소년 그리스도인(감리회)이 만들었습니다.</p>
+            <p>모든 이들에게 하나님의 사랑이 전해지기를 소망합니다.</p>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(135, 206, 235, 0.1); border-radius: 15px;">
+                <p style="font-size: 1.1rem; color: #E0F6FF; margin-bottom: 1rem;">
+                    <strong>의문이 있나요? 따뜻하고 충실하게 답변해드립니다.</strong>
+                </p>
+                <p style="margin-bottom: 0.5rem;">📧 christanswer@gmail.com</p>
+                <p style="margin-bottom: 0.5rem;">📱 인스타그램 @christanswer</p>
+                <p style="margin-bottom: 1rem;">💬 카톡채널 크리스트엔서</p>
+                <p style="color: #87CEEB; font-weight: bold;">지금 마음껏 질문해주세요!</p>
+            </div>
+            
+            <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+                "하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니<br>
+                이는 그를 믿는 자마다 멸망하지 않고 영생을 얻게 하려 하심이라" - 요한복음 3:16
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // FAQ 토글 기능
+        function toggleFAQ(index) {
+            const answer = document.getElementById(`faq-${index}`);
+            const isActive = answer.classList.contains('active');
+            
+            // 모든 FAQ 답변 닫기
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // 클릭한 항목이 닫혀있었다면 열기
+            if (!isActive) {
+                answer.classList.add('active');
+            }
+        }
+        
+        // 친근한 말투 토글 기능
+        let isFriendlyMode = false;
+        
+        const originalTexts = {
+            headerDesc: "지치고 슬픈 모든 이들에게 전하는 예수님의 사랑",
+            loveP1: "오늘 하루도 힘들었나요? 마음이 무겁고 앞길이 보이지 않나요? 그런 당신에게 전하고 싶은 말이 있습니다.",
+            loveP2: "예수님은 당신을 깊이 사랑하십니다. 당신이 누구든, 어떤 상황에 있든, 그 사랑은 변하지 않습니다. 마치 바다처럼 깊고 넓은 그 사랑 안에서 당신은 평안을 찾을 수 있습니다.",
+            hopeP1: "어둠이 아무리 깊어도 새벽은 반드시 옵니다. 지금의 고통이 영원하지 않음을 기억하세요.",
+            hopeP2: "예수님은 말씀하셨습니다: \"세상에서는 너희가 환난을 당하나 담대하라 내가 세상을 이기었노라\" (요한복음 16:33)",
+            loveMsgContent: "예수님의 사랑은 조건이 없습니다. 당신이 믿든 믿지 않든, 그분의 사랑은 언제나 당신과 함께합니다.",
+            peaceTitle: "평안을 찾는 방법",
+            peaceP1: "• **기도해보세요** - 말로 하든 마음으로 하든, 솔직한 마음을 표현해보세요",
+            peaceP2: "• **성경을 읽어보세요** - 시편은 특히 위로가 됩니다",
+            peaceP3: "• **자연을 바라보세요** - 하나님의 창조물 안에서 평안을 느껴보세요",
+            peaceP4: "• **누군가와 이야기하세요** - 혼자 견디지 마시고 도움을 청하세요"
+        };
+        
+        const friendlyTexts = {
+            headerDesc: "힘들고 지친 너에게 전하는 예수님의 따뜻한 사랑 💙",
+            loveP1: "오늘도 정말 힘들었겠구나... 마음이 무겁고 앞이 안 보이지? 괜찮아, 그런 너에게 꼭 전하고 싶은 말이 있어.",
+            loveP2: "예수님이 너를 진짜 진짜 사랑해. 네가 누구든, 지금 어떤 상황이든 상관없이 말이야. 바다처럼 깊고 넓은 그 사랑 안에서 너도 평안을 찾을 수 있을 거야.",
+            hopeP1: "아무리 깜깜해도 새벽은 꼭 와. 지금 이 힘든 시간이 영원하지 않다는 걸 꼭 기억해줘.",
+            hopeP2: "예수님이 이렇게 말씀하셨어: \"세상에서는 너희가 힘들겠지만 용기내! 내가 이미 세상을 이겼으니까\" (요한복음 16:33)",
+            loveMsgContent: "예수님의 사랑은 조건 같은 거 없어. 네가 믿든 안 믿든, 그분의 사랑은 항상 너와 함께야.",
+            peaceTitle: "마음 편해지는 방법들",
+            peaceP1: "• **기도해봐** - 말로든 마음으로든, 솔직하게 다 털어놔도 돼",
+            peaceP2: "• **성경 읽어봐** - 시편이 특히 마음에 위로가 될 거야",
+            peaceP3: "• **자연 좀 봐** - 하나님이 만드신 것들 보면서 마음 좀 달래봐",
+            peaceP4: "• **누군가랑 얘기해** - 혼자 견디려 하지 말고 도움 요청해도 돼"
+        };
+        
+        function toggleTone() {
+            const button = document.getElementById('tone-toggle');
+            isFriendlyMode = !isFriendlyMode;
+            
+            if (isFriendlyMode) {
+                button.textContent = '되돌리기';
+                // 친근한 말투로 변경
+                document.getElementById('header-desc').textContent = friendlyTexts.headerDesc;
+                document.getElementById('love-p1').textContent = friendlyTexts.loveP1;
+                document.getElementById('love-p2').textContent = friendlyTexts.loveP2;
+                document.getElementById('hope-p1').textContent = friendlyTexts.hopeP1;
+                document.getElementById('hope-p2').textContent = friendlyTexts.hopeP2;
+                document.getElementById('love-msg-content').textContent = friendlyTexts.loveMsgContent;
+                document.getElementById('peace-title').textContent = friendlyTexts.peaceTitle;
+                document.getElementById('peace-p1').innerHTML = friendlyTexts.peaceP1;
+                document.getElementById('peace-p2').innerHTML = friendlyTexts.peaceP2;
+                document.getElementById('peace-p3').innerHTML = friendlyTexts.peaceP3;
+                document.getElementById('peace-p4').innerHTML = friendlyTexts.peaceP4;
+            } else {
+                button.textContent = '친근하게';
+                // 원래 말투로 복원
+                document.getElementById('header-desc').textContent = originalTexts.headerDesc;
+                document.getElementById('love-p1').textContent = originalTexts.loveP1;
+                document.getElementById('love-p2').textContent = originalTexts.loveP2;
+                document.getElementById('hope-p1').textContent = originalTexts.hopeP1;
+                document.getElementById('hope-p2').textContent = originalTexts.hopeP2;
+                document.getElementById('love-msg-content').textContent = originalTexts.loveMsgContent;
+                document.getElementById('peace-title').textContent = originalTexts.peaceTitle;
+                document.getElementById('peace-p1').innerHTML = originalTexts.peaceP1;
+                document.getElementById('peace-p2').innerHTML = originalTexts.peaceP2;
+                document.getElementById('peace-p3').innerHTML = originalTexts.peaceP3;
+                document.getElementById('peace-p4').innerHTML = originalTexts.peaceP4;
+            }
+        }
+        
+        // 페이지 로드 시 부드러운 애니메이션
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.content-section, .bible-verse');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    section.style.transition = 'all 0.8s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+        
+        // 추가 유성 생성 (더 많은 유성우 효과)
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 50 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            document.querySelector('.shooting-stars').appendChild(star);
+            
+            setTimeout(() => {
+                star.remove();
+            }, 3000);
+        }
+        
+        // 주기적으로 새로운 유성 생성
+        setInterval(createStar, 2000);
+    </script>
+</body>
+</html>
